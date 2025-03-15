@@ -1,0 +1,57 @@
+.NavContainer{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(6, 3, 0);
+    height: 55px;
+    display: flex;
+}
+
+.NavContainer .common{
+    width: 30%;
+    height: 100%;
+    
+    display: flex;
+    color: white;
+}
+
+.navlink{
+    color: white;
+    margin: auto;
+    font-size: medium;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navlink:focus,.navlink:hover{
+    text-decoration: none;
+}
+
+
+
+
+
+.NavContainer .conditional{
+    width: 50%;
+    height: 100%;
+    align-content: flex-end; 
+    display: flex;
+}
+
+.logoutButton{
+    display: flex;
+    margin: auto;
+    font-size: medium;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+
+.dummy{
+    display: flex;
+    align-items: center;
+  
+
+}
