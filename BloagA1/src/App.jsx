@@ -6,6 +6,7 @@ import RootPage from './Pages/RootPage/RootPage'
 import * as Main from './Pages/AllPage'
 import ProtectedComo from './Component/Protected/ProtectedComo'
 function App() {
+ 
 
   const Router=createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<RootPage/>} >

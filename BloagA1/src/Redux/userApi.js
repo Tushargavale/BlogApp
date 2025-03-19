@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import authservice from "../../Appwrite/AuthAPI";
 export const addUser=createAsyncThunk('user/addUser',async({email,password,name,dateOfBirth})=>{
 
 }) 

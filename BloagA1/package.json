@@ -21,6 +21,8 @@
     "@mui/material": "^6.4.7",
     "@mui/styled-engine-sc": "^6.4.6",
     "@reduxjs/toolkit": "^2.6.1",
+    "appwrite": "^17.0.1",
+    "dotenv": "^16.4.7",
     "framer-motion": "^12.4.10",
     "jodit-react": "^5.2.15",
     "react": "^19.0.0",
