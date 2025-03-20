@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const ProtectedComo = ({children}) => {
  
     const navigate=useNavigate()    
-    const Auth=useSelector((state)=>state.user.Authnticated)
+    const Auth=useSelector((state)=>state.user.Authenticated)
     const [loading,setLoading]=useState(true)
 
     useEffect(()=>{

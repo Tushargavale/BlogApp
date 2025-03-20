@@ -20,7 +20,7 @@ const NavBar1 = () => {
     
 
    
-    const isAuthenticated=useSelector((state)=>state.user.Authnticated)
+    const isAuthenticated=useSelector((state)=>state.user.Authenticated)
     const common=[
         {
             name:'Home',
@@ -85,7 +85,7 @@ const NavBar1 = () => {
                <div className="Button">
                     <button onClick={LogoutFun} >Logout</button>
                 </div>
-            :null}
+             :null} 
         </div>
       </div>
     </>

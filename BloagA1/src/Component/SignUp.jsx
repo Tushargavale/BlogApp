@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login/Login.css'
 import ErrorComponent from './ErrorComponent'
+import { useDispatch,useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { loginUser,createaccount } from '../Redux/userApi'
+import { clearError } from '../Redux/userSlice'
 const SignUp = () => {
-    const userinfo={
+
+  const tempUser={
       name:'',
       email:'',
       password:'',
       dateOfBirth:''
     }
 
+    const navigate=useNavigate()
+
+    const dispatch=useDispatch()
+    
+    const userInfo=useSelector((state)=>state.user)
     const [error,setError]=useState('') 
 
     const ValidatorFunction=(user)=>{
@@ -19,16 +29,31 @@ const SignUp = () => {
       return true
     }
 
-    const [user,setUSer]=useState(userinfo)
+       useEffect(()=>{dispatch(clearError())},[dispatch])
+  useEffect(()=>{
+    console.log(userInfo)
+    if(userInfo.Authenticated)
+      navigate('/blogs')
+
+    if(userInfo.error)
+      setError(userInfo.error)
+
+ return ()=>{dispatch(clearError())} 
+
+  },[userInfo])
+
+
+  const [user,setUSer]=useState(tempUser)
   const Handler=(e)=>{
     const {name,value}=e.target
-    console.log(name,value)
+    // console.log(name,value)
     setUSer({...user,[name]:value}) 
   }
   const SignupFun=()=>{
     if(ValidatorFunction(user))
     {
-      console.log('Submited Successful;y')
+      // console.log('Submited Successful;y')
+      dispatch(createaccount(user))
     }
 
   }

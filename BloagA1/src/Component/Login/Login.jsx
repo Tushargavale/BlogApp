@@ -6,6 +6,7 @@ import './Login.css'
 import { useSelector,useDispatch } from 'react-redux';
 import { loginUser } from '../../Redux/userApi';
 import { useNavigate } from 'react-router-dom';
+import { clearError } from '../../Redux/userSlice';
 const Login = () => {
 
     const navigate=useNavigate()
@@ -18,7 +19,7 @@ const Login = () => {
     })
 
     useEffect(()=>{
-      if(storeuser.Authnticated)
+      if(storeuser.Authenticated)
       {
         navigate('/blogs')
       }
@@ -26,7 +27,9 @@ const Login = () => {
       {
         setError(storeuser.error)
       }
-    },[storeuser])
+
+      return ()=>{dispatch(clearError())} 
+    },[storeuser,dispatch,navigate])
 
     // useEffect(()=>{
     //   console.log(storeuser.error)
@@ -49,6 +52,8 @@ const Login = () => {
 
             return false
    } 
+
+   useEffect(()=>{dispatch(clearError())},[dispatch])
 
   function submit(){
     if(Validation(user)){
