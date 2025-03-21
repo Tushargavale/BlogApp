@@ -8,6 +8,7 @@ import './RootPage.css'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getCurrentUser } from '../../Redux/userApi'
+import Loading from '../../Component/Loading'
 const RootPage = () => {
 
 const dispatch=useDispatch() 
@@ -29,7 +30,7 @@ useEffect(()=>{
 </div> */}
 
 
-{loader?<h1>Loading</h1>:
+{loader?<Loading/>:
 
 <div className="rootcontainer">
   <div className="NavBar">
