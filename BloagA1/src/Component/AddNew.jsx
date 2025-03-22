@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import Editor from './Editor/Editor'
+import blogAPI from '../../Appwrite/BlogAPI'
+import { useSelector } from 'react-redux'
 const AddNew = () => {
 
     const blogtemp={
       title:'',
       slug:'',
-      content:''
+      content:'',
+      status:true
     }
+const [blog,setBlog]=useState(blogtemp)
+    const user=useSelector((state)=>state.user.user)
 
-    const submitBlog=()=>{
+    const submitBlog=async()=>{
       console.log(blog)
+      try{
+        let doc=await blogAPI.createPost({...blog,'userID':user.$id})
+        console.log(doc)
+      }catch(error)
+      {
+        console.log(error)
+      }
+
     }
 
-    const [blog,setBlog]=useState(blogtemp)
+    
   
 
 

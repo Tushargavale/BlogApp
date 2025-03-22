@@ -1,10 +1,17 @@
 
 import React, { useState, useRef, useMemo,useEffect } from 'react';
 import JoditEditor from 'jodit-react';
-const Editor = ({setBlog,readonly,submitBlog,blog}) => {
-    const placeholder='Enter Blog'
+
+
+
+import Dropdown from "../Dropdown"
+
+const Editor = ({setBlog,readonly,submitBlog,blog,status}) => {
+
+  
+  const placeholder='Enter Blog'
     const editor = useRef(null);
-	const [content, setContent] = useState('');
+	  const [content, setContent] = useState('');
 
     const [title,setTitle]=useState('')
     const [slug,setSlug]=useState('')
@@ -26,7 +33,7 @@ const Editor = ({setBlog,readonly,submitBlog,blog}) => {
     };
 
     setSlug(generateSlug(title));
-    console.log(slug)
+    // console.log(slug)
   }, [title]); 
 
 
@@ -39,12 +46,20 @@ const Editor = ({setBlog,readonly,submitBlog,blog}) => {
 			readonly: false, 
 			placeholder: placeholder || 'Start typings...',
             height:350,
+            showCharsCounter: false,
+            showWordsCounter: false,
+            showXPathInStatusbar: false,
             toolbarButtonSize: 'middle',
+            allowResizeX: false,
+            allowResizeY: false,
             style:{
                color:'black',
                'text-align':'left',
                 margine:'10px',
-                padding:'10px'
+                padding:'10px',
+                maxHeight: '350px',
+               
+
                   
             },
             enter:'br'
@@ -77,11 +92,15 @@ const Editor = ({setBlog,readonly,submitBlog,blog}) => {
       readOnly={true}
      
       placeholder="Enter slug..." 
-      className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full p-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
       defaultValue={slug}
-      
-     
+           
     />
+       <div className="dropdown">
+    <Dropdown name={'status'} DropdownValue={blog.status} setFun={setBlog} value={blog}  />
+  </div>
+    
+    
   </div>
 
   {/* Content */}
@@ -90,6 +109,7 @@ const Editor = ({setBlog,readonly,submitBlog,blog}) => {
 			ref={editor}
  			value={content}
 			config={config}
+     
 			tabIndex={1} // tabIndex of textarea
 		    onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
 			onChange={newContent => contentHandler(newContent) }
@@ -106,7 +126,11 @@ const Editor = ({setBlog,readonly,submitBlog,blog}) => {
     >
     Submit      
    </button>
+
+   
   </div>
+  
+
 </div>
      
      
