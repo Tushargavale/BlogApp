@@ -27,7 +27,7 @@ function App() {
       {/* <Route path='/cart' element={<ProctedRoute  children={<root.CartPage />} />} /> */}
     
       {/* <Route path='/blogs' element={<Main.BlogPage/>} ></Route> */}
-      <Route path='/profile' element={<Main.ProfilePage/>}></Route>
+     
 
     </Route>
   ))
