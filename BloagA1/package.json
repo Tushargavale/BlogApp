@@ -25,6 +25,7 @@
     "appwrite": "^17.0.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.4.10",
+    "html-to-text": "^9.0.5",
     "jodit-react": "^5.2.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

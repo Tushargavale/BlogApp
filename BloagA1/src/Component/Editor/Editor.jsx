@@ -58,11 +58,20 @@ const Editor = ({setBlog,readonly,submitBlog,blog,status}) => {
                 margine:'10px',
                 padding:'10px',
                 maxHeight: '350px',
-               
+    
 
                   
             },
-            enter:'br'
+            enter:'br',
+            extraPlugins: ['pasteCode']       // it allow to add paste code
+
+
+            
+
+
+
+
+
       
 		}),
 		[placeholder]

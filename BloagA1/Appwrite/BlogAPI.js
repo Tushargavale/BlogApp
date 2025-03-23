@@ -35,10 +35,20 @@ export class Service{
     async getAllPost(){
         try {
           const allPost= await  this.databases.listDocuments(config.appwriteDatabaseID,config.appwriteCollectionID,[Query.equal('status',true)])
-            console.log(allPost)
+            // console.log(allPost)
+            return allPost
        
         } catch (error) {
             console.log(`Error is ${error}  ` )
+        }
+    }
+
+    async getBlogByID(slug){
+        try {
+            let Blog=await this.databases.getDocument(config.appwriteDatabaseID,config.appwriteCollectionID,slug)
+            return Blog
+        } catch (error) {
+            console.log(error)
         }
     }
 
