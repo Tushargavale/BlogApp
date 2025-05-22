@@ -6,18 +6,18 @@ import JoditEditor from 'jodit-react';
 
 import Dropdown from "../Dropdown"
 
-const Editor = ({setBlog,readonly,submitBlog,blog,status}) => {
+const Editor = ({setBlog,readonly,submitBlog,blog,status,editmode=false}) => {
 
   
   const placeholder='Enter Blog'
     const editor = useRef(null);
-	  const [content, setContent] = useState('');
+    
+	  const [content, setContent] = useState(blog.content?blog.content:'');
 
-    const [title,setTitle]=useState('')
-    const [slug,setSlug]=useState('')
+    const [title,setTitle]=useState(blog.title?blog.title:'')
+    const [slug,setSlug]=useState(blog.slug?blog.slug:'')
 
-
-    const contentHandler=(content)=>{
+  const contentHandler=(content)=>{
         setBlog({...blog,['content']:content})
     }
 
@@ -58,21 +58,11 @@ const Editor = ({setBlog,readonly,submitBlog,blog,status}) => {
                 margine:'10px',
                 padding:'10px',
                 maxHeight: '350px',
-    
-
-                  
+                
             },
             enter:'br',
             extraPlugins: ['pasteCode']       // it allow to add paste code
-
-
-            
-
-
-
-
-
-      
+     
 		}),
 		[placeholder]
 	);
@@ -85,7 +75,8 @@ const Editor = ({setBlog,readonly,submitBlog,blog,status}) => {
     
     <input 
       type="text" 
-      readOnly={readonly}
+      readOnly={editmode}
+      // disabled={editmode}
       placeholder="Enter title..." 
       className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
       value={title}

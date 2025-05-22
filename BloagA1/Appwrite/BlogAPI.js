@@ -23,12 +23,18 @@ export class Service{
             let doc=await this.databases.createDocument(config.appwriteDatabaseID,config.appwriteCollectionID,slug,{
                 title,content,userID,status
             })
-
-            return doc
-
             console.log(doc)
+            return {
+                status:true,
+            }
+
+          
         } catch (error) {
             console.log('Errorr is ' , error)
+            return {
+                status:false,
+                error:error.message || 'something wend wrong'
+            }
         }
     }
 
@@ -49,6 +55,33 @@ export class Service{
             return Blog
         } catch (error) {
             console.log(error)
+        }
+    }
+
+
+    async deleteBlog(slug){
+        try {
+            let resp=await this.databases.deleteDocument(config.appwriteDatabaseID,config.appwriteCollectionID,slug)
+            console.log(resp)
+            return true
+        } catch (error) {
+            console.log(error)
+            return error.message || 'Something Went Wrong'
+        }
+    }
+
+
+    async updateBlog({slug,content,title,status,userID}){
+        try {
+            let response=await this.databases.updateDocument(config.appwriteDatabaseID,config.appwriteCollectionID,slug,{
+                content,title,userID,status
+            })
+            console.log(response)
+            return response
+
+        } catch (error) {
+            console.log(error)
+            return false
         }
     }
 

@@ -22,7 +22,7 @@ function App() {
       <Route path='/profile' element={<ProtectedComo children={<Main.ProfilePage/>}/>}></Route>
       <Route path='/addnew' element={<ProtectedComo children={<Main.AddNewPage/>}/>}></Route>
 
-
+  <Route path='/editblog/:slug' element={<ProtectedComo children={<Main.EditPage/>}/>}></Route>
  <Route path='/BlogDetail/:slug' element={<ProtectedComo children={<Main.BlogDetailPage/>}/>}></Route>
       {/* <Route path='/cart' element={<ProctedRoute  children={<root.CartPage />} />} /> */}
     

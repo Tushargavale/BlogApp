@@ -14,20 +14,14 @@ const RootPage = () => {
 const dispatch=useDispatch() 
 const [loader,setLoader]=useState(true)
 useEffect(()=>{
-  dispatch(getCurrentUser()).then(()=>setLoader(false))
+  dispatch(getCurrentUser()).then(()=>{
+    setLoader(false)
+  })
 },[])
+
   return (
     <>
-{/* <div className="flex flex-col min-h-screen">
- 
-  <NavBar1/>
-  <div className="flex-grow">
-    <Container>
-      <Outlet />
-    </Container>
-  </div>
-  <Footer  />
-</div> */}
+
 
 
 {loader?<Loading/>:

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Editor from './Editor/Editor'
 import blogAPI from '../../Appwrite/BlogAPI'
 import { useSelector } from 'react-redux'
+import ErrorComponent from './ErrorComponent'
+import { useNavigate } from 'react-router-dom'
 const AddNew = () => {
-
+  const navigate=useNavigate()
+const [error,setError]=useState('')
     const blogtemp={
       title:'',
       slug:'',
@@ -17,10 +20,16 @@ const [blog,setBlog]=useState(blogtemp)
       console.log(blog)
       try{
         let doc=await blogAPI.createPost({...blog,'userID':user.$id})
-        console.log(doc)
+       if(doc.status)
+        navigate('/blogs')
+      else{
+        console.log(doc.error)
+        setError(doc.error)
+      }
       }catch(error)
       {
-        console.log(error)
+        console.log(doc)
+        setError(error)
       }
 
     }
@@ -33,6 +42,7 @@ const [blog,setBlog]=useState(blogtemp)
   return (
     <>
         <Editor readonly={false}  blog={blog} submitBlog={submitBlog} setBlog={setBlog}  />
+           {error?<ErrorComponent error={error} setError={setError} />:null}
     </>
   )
 }
