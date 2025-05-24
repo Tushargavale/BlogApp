@@ -38,9 +38,13 @@ export class Service{
         }
     }
 
-    async getAllPost(){
+    async getAllPost(id){
         try {
-          const allPost= await  this.databases.listDocuments(config.appwriteDatabaseID,config.appwriteCollectionID,[Query.equal('status',true)])
+        //   const allPost= await  this.databases.listDocuments(config.appwriteDatabaseID,config.appwriteCollectionID,[Query.equal('status',true) ])
+            const allPost= await  this.databases.listDocuments(config.appwriteDatabaseID,config.appwriteCollectionID,[Query.or([
+  Query.equal('status', true),
+  Query.equal('userID', id)
+])])
             // console.log(allPost)
             return allPost
        
